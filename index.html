@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+  <h2>Register</h2>
+
+  <input type="text" id="regUsername" placeholder="Enter Username">
+  <br><br>
+  <input type="password" id="regPassword" placeholder="Enter Password">
+  <br><br>
+  <button onclick="register()">Register</button>
+
+  <hr>
+
+  <h2>Login</h2>
+
+  <input type="text" id="username" placeholder="Enter Username">
+  <br><br>
+  <input type="password" id="password" placeholder="Enter Password">
+  <br><br>
+  <button onclick="login()">Login</button>
+
+  <p id="result"></p>
+
+  <script>
+    async function register() {
+      const username = document.getElementById("regUsername").value;
+      const password = document.getElementById("regPassword").value;
+
+      const response = await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("User Registered Successfully ✅");
+      }
+    }
+
+    async function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const response = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "/dashboard.html";
+      } else {
+        document.getElementById("result").innerText = "Invalid credentials ❌";
+      }
+    }
+  </script>
+</body>
+</html>
