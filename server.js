@@ -15,6 +15,10 @@ app.use(express.static("public"));
 
 const SECRET_KEY = process.env.JWT_SECRET;
 
+app.get("/", (req, res) => {
+  res.send("Chat App Backend is Running 🚀");
+});
+
 /* ===============================
    MONGODB
 ================================ */
