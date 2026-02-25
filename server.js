@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -12,12 +13,12 @@ const io = new Server(server);
 app.use(express.json());
 app.use(express.static("public"));
 
-const SECRET_KEY = "mySuperSecretKey123";
+const SECRET_KEY = process.env.JWT_SECRET;
 
 /* ===============================
    MONGODB
 ================================ */
-mongoose.connect("mongodb://127.0.0.1:27017/authDB")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected ✅"))
   .catch(err => console.log(err));
 
@@ -108,6 +109,8 @@ io.on("connection", (socket) => {
     }
   });
 });
-server.listen(5000, () => {
-  console.log("Server running on http://localhost:5000 ");
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
 });
