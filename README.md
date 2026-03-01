@@ -40,6 +40,7 @@ A full-stack real-time chat application built using:
 
 1. Clone the repository
 
+https://ankita292006.github.io/chat_app/
 2. Install dependencies
   npm install
 
