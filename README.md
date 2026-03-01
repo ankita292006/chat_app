@@ -41,14 +41,19 @@ A full-stack real-time chat application built using:
 1. Clone the repository
 
 https://ankita292006.github.io/chat_app/
+
 2. Install dependencies
+ 
   npm install
 
 4. Create a `.env` file
+
 MONGO_URI=your_mongodb_connection_string
+
 JWT_SECRET=your_secret_key
 
 6. Run the server
+
 http://localhost:5000
 
 ---
